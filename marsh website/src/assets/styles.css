@@ -1,0 +1,277 @@
+/* Shared palette drawn from the home page image. */
+:root {
+  --ink: #102c46;
+  --body-ink: #263746;
+  --muted: #53616d;
+  --accent: #0057a8;
+  --focus: #0057a8;
+  --page-bg: #fff;
+  --tint: #edf5ff;
+  --border: #b9c6d0;
+  --content-width: 1040px;
+  --page-gutter: 48px;
+}
+/* Shared navigation and article layout. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page-bg); color: var(--ink); font: 16px/1.75 system-ui, sans-serif; }
+.site-header { position: sticky; top: 0; z-index: 15; background: #fff; }
+html { scroll-padding-top: 90px; }
+.top-nav {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  font: 15px/1.5 system-ui, sans-serif;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.mobile-nav-bar { display: none; }
+.top-nav a, .dropdown-toggle, .mobile-menu-toggle {
+  display: block;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+}
+.top-nav a:hover, .dropdown-toggle:hover,
+.dropdown-toggle[aria-expanded="true"] { background: var(--tint); }
+.top-nav :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.dropdown { position: relative; }
+.dropdown-toggle .nav-chevron { margin-left: 6px; }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: #fff;
+}
+.dropdown-menu[hidden] { display: none; }
+.top-nav:not(.is-enhanced) .dropdown-menu { position: static; }
+
+.home-content, .page-content {
+  width: min(calc(100% - var(--page-gutter)), var(--content-width));
+  margin: 0 auto;
+  padding: 36px 0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+.page-label {
+  margin: 0 0 16px;
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+h1 {
+  max-width: 100%;
+  margin: 0 0 24px;
+  font-size: clamp(25px, 2.8vw, 34px);
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  font-weight: 650;
+}
+.introduction {
+  max-width: 100%;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--body-ink);
+}
+.starting-points { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); }
+/* Content typography applies to report sections and reference sections alike. */
+:is(.home-content, .page-content) h2 { margin: 0 0 20px; font-size: 28px; line-height: 1.3; font-weight: 600; }
+:where(.home-content, .page-content) p { color: var(--body-ink); }
+:where(.home-content, .page-content) a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+:where(.home-content, .page-content) a:hover { text-decoration-thickness: 2px; }
+.starting-points ul { margin: 0; padding-left: 24px; }
+.starting-points li { padding-left: 5px; margin-bottom: 16px; color: var(--body-ink); }
+.starting-points strong { color: var(--ink); }
+:is(.home-content, .page-content) a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.project-disclaimer { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border); }
+.project-disclaimer p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.coming-soon { color: var(--muted); }
+.return-home { display: inline-block; padding: 10px 18px; border: 1px solid var(--accent); font-weight: 600; }
+.return-home:hover { background: var(--tint); }
+.article-section { margin-top: 36px; }
+.article-section p { margin: 0 0 18px; color: var(--body-ink); }
+.article-section ul, .article-section ol { margin: 0 0 18px; padding-left: 24px; color: var(--body-ink); }
+.article-section li { margin-bottom: 16px; }
+/* Table contract: .report-table inside .table-scroll. --timeline wraps two columns;
+   --stacked derives mobile labels in tables.js; add --comparison for four columns
+   arranged as row heading, full-width description, and two compact fields. */
+.table-scroll { container: report-table / inline-size; max-width: 100%; overflow-x: auto; margin: 24px 0 12px; }
+.table-scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.report-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px; line-height: 1.6; text-align: left; }
+.report-table caption { text-align: left; font-weight: 600; margin-bottom: 12px; }
+.report-table th, .report-table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.report-table thead th { background: var(--ink); color: #fff; }
+.report-table tbody th { font-weight: 600; }
+.report-table tbody tr:nth-child(even) { background: #f5f7f9; }
+.report-table--timeline { min-width: 0; table-layout: fixed; }
+.report-table--timeline th:first-child { width: 5.5rem; }
+.report-table--timeline td { overflow-wrap: anywhere; }
+.table-cell-label { display: none; }
+.table-cell-value { min-width: 0; }
+@container report-table (max-width: 720px) {
+  .report-table--timeline th, .report-table--timeline td { padding: 10px 8px; }
+  .report-table--timeline th:first-child { width: 4.5rem; }
+  .report-table--stacked.is-stack-ready { display: block; min-width: 0; }
+  .report-table--stacked.is-stack-ready caption { display: block; }
+  /* Keep column headers available to assistive technology. */
+  .report-table--stacked.is-stack-ready thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .report-table--stacked.is-stack-ready tbody { display: block; }
+  .report-table--stacked.is-stack-ready tbody tr { display: grid; grid-template-columns: minmax(0, 1fr); background: #fff; margin-bottom: 20px; padding: 0; border: 1px solid var(--border); }
+  .report-table--stacked.is-stack-ready tbody th { display: block; grid-column: 1 / -1; padding: 12px 16px; border: 0; font-size: 18px; color: #fff; background: var(--ink); }
+  .report-table--stacked.is-stack-ready td { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 12px 16px; border: 0; border-top: 1px solid var(--border); }
+  /* Four-column comparisons put the long description above two compact fields. */
+  .report-table--comparison.is-stack-ready tbody tr { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .report-table--comparison.is-stack-ready td:first-of-type { grid-column: 1 / -1; border-top: 0; }
+  .report-table--comparison.is-stack-ready td:last-of-type { border-left: 1px solid var(--border); }
+  .report-table--stacked.is-stack-ready .table-cell-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+  .report-table--stacked.is-stack-ready .table-cell-value { overflow-wrap: anywhere; }
+}
+.article-section .table-source { font-size: 14px; color: var(--muted); }
+.citation { color: var(--accent); white-space: nowrap; text-underline-offset: 3px; }
+.references { padding-left: 32px; font-size: 16px; line-height: 1.7; }
+.references li { padding-left: 6px; margin-bottom: 20px; overflow-wrap: anywhere; }
+.references li:target { background: var(--tint); outline: 2px solid var(--accent); outline-offset: 4px; }
+html { scrollbar-gutter: stable; }
+html.citation-is-open { overflow: hidden; }
+.citation-dialog {
+  position: fixed;
+  inset: auto 0 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  max-height: 75vh;
+  max-height: 75dvh;
+  padding: 0;
+  border: 0;
+  border-top: 3px solid var(--accent);
+  background: #fff;
+  color: var(--ink);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.citation-dialog:not([open]) { display: none; }
+.citation-dialog[open] { animation: citation-rise 180ms ease-out; }
+.citation-dialog::backdrop { background: rgb(5 17 29 / 48%); }
+.citation-sheet { width: min(calc(100% - var(--page-gutter)), var(--content-width)); margin: 0 auto; padding: 24px 0 max(28px, env(safe-area-inset-bottom)); }
+.citation-sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.citation-sheet-header h2 { margin: 0; font-size: 20px; line-height: 1.3; }
+.citation-close { width: 44px; height: 44px; flex: 0 0 44px; border: 1px solid var(--border); background: #fff; color: var(--ink); font-size: 28px; cursor: pointer; }
+.citation-close:hover { background: var(--tint); }
+.citation-sheet-content { margin: 16px 0; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; color: var(--body-ink); }
+.citation-sheet a { color: var(--accent); text-underline-offset: 3px; }
+.citation-full-reference { display: inline-block; padding: 8px 0; font-size: 14px; }
+.citation-sheet :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+@keyframes citation-rise { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .citation-dialog[open] { animation: none; } }
+.dropdown.is-current > .dropdown-toggle { color: var(--accent); }
+.top-nav a[aria-current="page"], .dropdown.is-current > .dropdown-toggle > .nav-label {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 20; padding: 10px 16px; background: white; color: var(--ink); }
+.skip-link:focus { top: 8px; }
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(calc(100% - var(--page-gutter)), var(--content-width));
+  margin: 0 auto 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.page-navigation a {
+  display: inline-flex;
+  flex: 0 1 280px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  max-width: calc(50% - 8px);
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--accent);
+  background: #fff;
+  text-decoration: none;
+  line-height: 1.5;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.page-navigation a:hover { background: var(--tint); border-color: var(--accent); }
+.page-navigation a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.page-navigation-label { font-size: 14px; font-weight: 600; }
+.page-navigation .page-navigation-next { margin-left: auto; align-items: flex-end; text-align: right; }
+/* Keep the navigation breakpoint aligned with matchMedia in main.js. */
+@media (max-width: 1000px) {
+  html { scroll-padding-top: 76px; }
+  .top-nav { padding: 8px 16px; }
+  .mobile-nav-bar { display: flex; align-items: center; justify-content: space-between; }
+  .mobile-menu-toggle { display: none; }
+  .top-nav.is-enhanced .mobile-menu-toggle { display: block; }
+  .nav-links { display: block; }
+  .top-nav.is-enhanced .nav-links { display: none; }
+  .top-nav.is-enhanced.is-open .nav-links { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 60px);
+    max-height: calc(100dvh - 60px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px 16px 16px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links > .nav-home-link { display: none; }
+  .dropdown-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .dropdown-menu { position: static; min-width: 0; margin: 0 0 8px 12px; box-shadow: none; }
+  .mobile-menu-toggle:hover { background: var(--tint); }
+  .top-nav:not(.is-enhanced) .nav-links { position: static; max-height: none; box-shadow: none; }
+}
+@media (max-width: 600px) {
+  :root { --page-gutter: 40px; }
+  .page-navigation { gap: 12px; }
+  .page-navigation a { padding: 8px 12px; }
+  .home-content, .page-content { padding: 28px 0; font-size: 16px; }
+  .introduction { font-size: 16px; line-height: 1.65; }
+  :is(.home-content, .page-content) h2 { font-size: 24px; }
+  .starting-points { margin-top: 32px; padding-top: 24px; }
+}
+
+/* Shared banner, used by the base page template. */
+.page-banner {
+  height: clamp(160px, 19vw, 260px);
+  background: #084669 url("images/glp-1-background.webp") center 46% / cover no-repeat;
+  border-bottom: 4px solid var(--accent);
+}
+@media (max-width: 600px) {
+  .page-banner { height: 140px; background-image: url("images/glp-1-background-mobile.webp"); background-position: 60% 46%; }
+}
+@media print {
+  .page-banner { display: none; }
+  .home-content, .page-content { width: 100%; padding: 0; }
+}
