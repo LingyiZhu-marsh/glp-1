@@ -275,3 +275,13 @@ html.citation-is-open { overflow: hidden; }
   .page-banner { display: none; }
   .home-content, .page-content { width: 100%; padding: 0; }
 }
+/*added this yeah uhm idk what im doing*/
+figure {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
